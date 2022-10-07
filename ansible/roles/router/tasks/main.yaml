@@ -13,21 +13,3 @@
     name: net.ipv4.ip_forward
     value: '1'
     sysctl_set: yes
-
-# Copia fichero ip_forward
-#- name: "Copia fichero ip_forward"
-#  copy:
-#    src: files/ip_forward
-#    dest: /proc/sys/net/ipv4/ip_forward
-#    owner: root
-#    group: root
-#    mode: '0644'
-
-# Copia fichero sysctl.conf
-#- name: "Copia fichero sysctl.conf"
-#  copy:
-#    src: files/sysctl.conf
-#    dest: /etc/sysctl.conf
-#    owner: root
-#    group: root
-#    mode: '0644'
