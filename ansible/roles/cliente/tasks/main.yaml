@@ -6,6 +6,14 @@
     group: root
     mode: '0644'
 
+- name: "Configurando dns..."
+  copy:
+    src: resolv.conf
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: '0644'
+
 - name: Reiniciando la maquina...
   ansible.builtin.reboot:
 
