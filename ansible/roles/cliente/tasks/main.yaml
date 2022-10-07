@@ -1,8 +1,11 @@
-- name: Borrando ruta por defecto...
-  command: ip route del default
-
-- name: Añadiendo nueva ruta por defecto...
-  command: ip route add default via 192.168.46.1
+- name: "Configurando red..."
+  copy:
+    src: interfaces
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Reiniciando la maquina...
   ansible.builtin.reboot:
+
