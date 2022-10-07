@@ -4,11 +4,5 @@
 - name: Añadiendo nueva ruta por defecto...
   command: ip route add default via 192.168.46.1
 
-- name: Haciendo la ruta por defecto persistente...
-  copy:
-    src: eth1
-    dest: /etc/network/interfaces
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
-
+- name: Reiniciando la maquina...
+  ansible.builtin.reboot:
