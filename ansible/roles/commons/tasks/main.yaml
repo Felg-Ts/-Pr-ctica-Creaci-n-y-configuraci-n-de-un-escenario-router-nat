@@ -1,0 +1,7 @@
+- name: Actualizar paquetes
+  apt: update_cache=yes upgrade=yes
+  become: true
+
+- name: Install ssh key
+  authorized_key: user=vagrant
+                  key="{{lookup('file', '/home/retr0/.ssh/id_rsa.pub')}}"

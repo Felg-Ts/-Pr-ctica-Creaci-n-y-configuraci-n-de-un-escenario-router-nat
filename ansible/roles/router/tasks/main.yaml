@@ -1,0 +1,33 @@
+- name: "Regla PREROUTING iptables"
+  command: iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth2 -j DNAT --to 192.168.46.2
+
+- name: "Regla POSTROUTING iptables"
+  command: iptables -t nat -A POSTROUTING -s 192.168.46.0/24 -o eth2 -j MASQUERADE
+
+- name: Instalación iptables-persistent
+  apt:
+    name: iptables-persistent
+
+- name: Habilitando ipv4 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    sysctl_set: yes
+
+# Copia fichero ip_forward
+#- name: "Copia fichero ip_forward"
+#  copy:
+#    src: files/ip_forward
+#    dest: /proc/sys/net/ipv4/ip_forward
+#    owner: root
+#    group: root
+#    mode: '0644'
+
+# Copia fichero sysctl.conf
+#- name: "Copia fichero sysctl.conf"
+#  copy:
+#    src: files/sysctl.conf
+#    dest: /etc/sysctl.conf
+#    owner: root
+#    group: root
+#    mode: '0644'
